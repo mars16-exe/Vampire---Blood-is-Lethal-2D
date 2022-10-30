@@ -18,6 +18,7 @@ public class healthManagement : MonoBehaviour
     public AudioClip hitClip;
     public AudioClip drowningClip;
     public AudioClip jumpClip;
+    public AudioClip healthPickup;
     
     // Start is called before the first frame update
     void Start()
@@ -66,8 +67,8 @@ public class healthManagement : MonoBehaviour
         if(collision.gameObject.CompareTag("Health"))
         {
             Health++;
+            soundEmitter.PlayOneShot(healthPickup);
             Destroy(collision.gameObject);
-            //pickupclip here
         }
     }
 
