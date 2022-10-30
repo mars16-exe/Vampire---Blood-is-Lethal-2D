@@ -52,6 +52,12 @@ public class healthManagement : MonoBehaviour
                 StartCoroutine("StopGame");
             }
         }
+
+        if(collision.gameObject.CompareTag("Health"))
+        {
+            Health++;
+            Destroy(collision.gameObject);
+        }
     }
 
     public void HandleDeath()
