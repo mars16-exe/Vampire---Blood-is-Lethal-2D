@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class followCam : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-
+    private bool isEndingScene = false;
     public Vector3 offset;
 
     private void Awake()
@@ -15,7 +13,14 @@ public class followCam : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = player.transform.position + offset;
+        if(!isEndingScene)
+        {
+            transform.position = player.transform.position + offset;
+        }
     }
 
+    public void EndFollow()
+    {
+        isEndingScene = true;
+    }
 }

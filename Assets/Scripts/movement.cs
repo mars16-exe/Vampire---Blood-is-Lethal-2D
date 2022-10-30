@@ -96,6 +96,15 @@ public class movement : MonoBehaviour
     {
         animator.SetTrigger("Drown");
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("GameManager"))
+        {
+            animator.SetTrigger("Pray");
+        }
+    }
+
     //private void OnDrawGizmos()
     //{
     //    Debug.DrawRay(transform.position, Vector2.down * groundCheckDistance, Color.red);
