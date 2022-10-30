@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class movement : MonoBehaviour
@@ -18,12 +16,18 @@ public class movement : MonoBehaviour
     [Header("Animation Department")]
     [SerializeField] private SpriteRenderer image_player;
     [SerializeField] private Animator animator;
+
+    [Header("Sound Department")]
+    //public AudioClip jumpClip;
+    private healthManagement healthManagement;
+
     // Start is called before the first frame update
     void Awake()
     {
         thisBody = this.gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponentInChildren<Animator>();
         image_player = gameObject.GetComponentInChildren<SpriteRenderer>();
+        healthManagement = GetComponent<healthManagement>();
     }
 
     // Update is called once per frame
@@ -82,6 +86,7 @@ public class movement : MonoBehaviour
         {
             thisBody.velocity = new Vector2(thisBody.velocity.x, jump * jumpSpeed * Time.deltaTime);
             isGrounded = false;
+            healthManagement.soundEmitter.PlayOneShot(healthManagement.jumpClip);
             animator.SetBool("isGrounded", isGrounded);
         }
     }

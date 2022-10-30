@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +12,13 @@ public class healthManagement : MonoBehaviour
     public Text Num_health;
 
     public CircleCollider2D circleCol;
+
+    [Header("Sound Department")]
+    public AudioSource soundEmitter;
+    public AudioClip hitClip;
+    public AudioClip drowningClip;
+    public AudioClip jumpClip;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +29,8 @@ public class healthManagement : MonoBehaviour
         movementScript = GetComponent<movement>();
 
         circleCol = GetComponent<CircleCollider2D>();
+
+        soundEmitter = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -38,6 +46,7 @@ public class healthManagement : MonoBehaviour
         if(collision.gameObject.CompareTag("Obstacle"))
         {
             Health--;
+            soundEmitter.PlayOneShot(hitClip);
         }
     }
 
@@ -49,6 +58,7 @@ public class healthManagement : MonoBehaviour
             {
                 movementScript.isMovementON = false;
                 movementScript.Drowning();
+                soundEmitter.PlayOneShot(drowningClip);
                 StartCoroutine("StopGame");
             }
         }
@@ -57,6 +67,7 @@ public class healthManagement : MonoBehaviour
         {
             Health++;
             Destroy(collision.gameObject);
+            //pickupclip here
         }
     }
 

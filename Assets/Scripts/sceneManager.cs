@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class sceneManager : MonoBehaviour
 {
+    //private AudioSource soundMaker;
+
     public void RestartGame()
     {
         SceneManager.LoadScene(1);
@@ -13,4 +15,9 @@ public class sceneManager : MonoBehaviour
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
+
+    //public void ClickyNoise()
+    //{
+    //    soundMaker.PlayOneShot(soundMaker.clip);
+    //}
 }
